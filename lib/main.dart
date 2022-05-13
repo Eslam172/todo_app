@@ -1,8 +1,18 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_application/screens/home_screen.dart';
+import 'package:todo_application/home_screen.dart';
+import 'package:todo_application/shared/bloc_observer.dart';
+import 'package:todo_application/shared/cubit/cubit.dart';
 
 void main() {
-  runApp(const MyApp());
+  BlocOverrides.runZoned(
+        () {
+          runApp(const MyApp());
+
+      // Use cubits...
+    },
+    blocObserver: MyBlocObserver(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
 
       ),
-      home: const HomeScreen(),
+      home:  HomeScreen(),
     );
   }
 }
